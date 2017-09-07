@@ -17,6 +17,7 @@ var DemoFadeIn = function(props){
                 </FadeIn>`);
   demos.push(<WithSrc code={code}  src={src} />);
 
+
   code = (<FadeIn duration={5}>
             <p>Fading text without param</p>
           </FadeIn>
