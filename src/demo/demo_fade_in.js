@@ -1,35 +1,32 @@
 import React from 'react';
-import pretty from 'pretty';
 import WithSrc from './WithSrc';
 import FadeIn from '../components/fade_in';
 
 var DemoFadeIn = function(props){
-  let demos = [];
+  let code = (<FadeIn>
+                <p>Fading text without param</p>
+              </FadeIn>);
 
-  let code = ( <FadeIn>
-                  <p>Fading text without param</p>
-                </FadeIn>
-              );
-
-  let src = pretty(`
-                <FadeIn>
-                  <p>Fading text without param</p>
-                </FadeIn>`);
-  demos.push(<WithSrc code={code}  src={src} />);
+  let src = `<FadeIn>
+               <p>Fading text without param</p>
+             </FadeIn>`;
+  let demo = WithSrc.createDemo(code, src);
 
 
-  code = (<FadeIn duration={5}>
-            <p>Fading text without param</p>
-          </FadeIn>
-         );
+  let code2 = (<FadeIn duration={5}>
+                 <p>Fading text with 5s duration</p>
+               </FadeIn>);
 
-  src = pretty(`
-                <FadeIn duration={5}>
-                  <p>Fading text without param</p>
-                </FadeIn>`);
-  demos.push(<WithSrc code={code}  src={src} />);
+  let src2 = `<FadeIn duration={5}>
+                <p>Fading text with 5s duration</p>
+              </FadeIn>`;
+  let demo2 = WithSrc.createDemo(code2, src2);
 
-  return (<div>{ demos }</div>);
+  return (
+    <div>
+      { demo  }
+      { demo2 }
+    </div>);
 }
 
 export default DemoFadeIn;

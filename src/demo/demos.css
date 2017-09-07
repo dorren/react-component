@@ -1,0 +1,9 @@
+
+.Demos .Menu {
+  float: left;
+  width: 200px;
+}
+
+.Demos .DemoArea {
+  margin-left: 200px
+}

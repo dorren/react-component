@@ -1,19 +1,35 @@
 import React from 'react';
+import pretty from 'pretty';
+import hljs from 'highlightjs';
+import  'highlightjs/styles/atom-one-light.css';
 
+class WithSrc extends React.Component {
+  componentDidMount() {
+    //hljs.initHighlightingOnLoad();
+    hljs.highlightBlock(this.srcDom);
+  }
 
-var WithSrc = function(props){
-  return (
-    <div className="DemoBox">
-      <div className="demo">
-        { props.code }
+  render() {
+    return (
+      <div className="DemoBox">
+        <div className="demo">
+          { this.props.code }
+        </div>
+
+        <pre ref={(dom) => { this.srcDom = dom; }}>
+          <code className="html">
+            { this.props.src }
+          </code>
+        </pre>
       </div>
+    )
+  }
 
-      <pre><code className="html">
-        { props.src }
-      </code></pre>
-    </div>
+  static createDemo(code, str){
+    let src = pretty(str);
 
-  )
+    return (<WithSrc code={code}  src={src} />);
+  }
 }
 
 export default WithSrc;
