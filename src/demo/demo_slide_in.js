@@ -13,32 +13,32 @@ var DemoFadeIn = function(props){
   let demo = WithSrc.createDemo(code, src);
 
 
-  let code2 = (<SlideIn duration={3} from="right" delay={3}>
+  let code2 = (<SlideIn duration={3} from="right" delay={1}>
                  <p>Sliding text with params</p>
                </SlideIn>);
 
-  let src2 = `<SlideIn duration={3} from="right" delay={3}>
+  let src2 = `<SlideIn duration={3} from="right" delay={1}>
                 <p>Sliding text with params</p>
               </SlideIn>`;
   let demo2 = WithSrc.createDemo(code2, src2);
 
 
 
-  let code3 = (<SlideIn duration={3} from="top" delay={6}>
+  let code3 = (<SlideIn duration={3} from="top" delay={4}>
                  <p>Sliding text with params</p>
                </SlideIn>);
 
-  let src3 = `<SlideIn duration={3} from="top" delay={6}>
+  let src3 = `<SlideIn duration={3} from="top" delay={4}>
                 <p>Sliding text with params</p>
               </SlideIn>`;
   let demo3 = WithSrc.createDemo(code3, src3);
 
 
-  let code4 = (<SlideIn duration={3} from="bottom" delay={9}>
+  let code4 = (<SlideIn duration={3} from="bottom" delay={7}>
                  <p>Sliding text with params</p>
                </SlideIn>);
 
-  let src4 = `<SlideIn duration={3} from="bottom" delay={9}>
+  let src4 = `<SlideIn duration={3} from="bottom" delay={7}>
                 <p>Sliding text with params</p>
               </SlideIn>`;
   let demo4 = WithSrc.createDemo(code4, src4);
