@@ -1,7 +1,7 @@
 
 .Demos .Menu {
   float: left;
-  width: 200px;
+  width: 150px;
 }
 
 .Demos .Menu > ul {
@@ -11,14 +11,19 @@
 }
 
 .Demos .Menu > ul > li {
-  padding: 5px;
+  padding: 7px 10px;
 }
 
 .Demos .Menu > ul > li:hover {
   background-color: #EEE;
 }
 
-.Demos .DemoArea {
-  margin-left: 200px;
+.Demos .DemoContent {
+  margin-left: 150px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.Demos .demo {
   overflow: hidden;
 }

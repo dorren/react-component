@@ -1,6 +1,8 @@
 
 import React from 'react';
 import './demos.css';
+import logo from '../logo.svg';
+import '../App.css';
 
 import DemoFadeIn from './demo_fade_in';
 import DemoSlideIn from './demo_slide_in';
@@ -32,13 +34,19 @@ class Demos extends React.Component {
     return (
       <div className="Demos">
         <div className="Menu">
+          <div className="App">
+            <div className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+            </div>
+          </div>
           <ul>
             <li onClick={this.showDemo} data-name="Home">Home</li>
             <li onClick={this.showDemo} data-name="FadeIn">FadeIn</li>
             <li onClick={this.showDemo} data-name="SlideIn">SlideIn</li>
           </ul>
+
         </div>
-        <div className="DemoArea">
+        <div className="DemoContent">
           { this.state.currentDemo }
         </div>
       </div>
