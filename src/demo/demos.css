@@ -4,6 +4,21 @@
   width: 200px;
 }
 
+.Demos .Menu > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Demos .Menu > ul > li {
+  padding: 5px;
+}
+
+.Demos .Menu > ul > li:hover {
+  background-color: #EEE;
+}
+
 .Demos .DemoArea {
-  margin-left: 200px
+  margin-left: 200px;
+  overflow: hidden;
 }

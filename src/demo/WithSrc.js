@@ -3,6 +3,9 @@ import pretty from 'pretty';
 import hljs from 'highlightjs';
 import  'highlightjs/styles/atom-one-light.css';
 
+/**
+ * shows actual working component and its source.
+ */
 class WithSrc extends React.Component {
   componentDidMount() {
     //hljs.initHighlightingOnLoad();
