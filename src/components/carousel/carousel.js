@@ -5,7 +5,6 @@ class Carousel extends React.Component {
   constructor(props){
     super(props);
 
-
     this.state = {len: props.children.length,
                   curr: 0,
                   style: {width: props.width, height: props.height}};

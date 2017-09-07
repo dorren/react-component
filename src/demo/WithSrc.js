@@ -1,7 +1,7 @@
 import React from 'react';
 import pretty from 'pretty';
 import hljs from 'highlightjs';
-import  'highlightjs/styles/atom-one-light.css';
+import  'highlightjs/styles/github.css';
 
 /**
  * shows actual working component and its source.
