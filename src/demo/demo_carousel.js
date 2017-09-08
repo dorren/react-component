@@ -19,17 +19,17 @@ var DemoCarousel = function(props){
 
 
   let code2 = (<Carousel width="800px" height="500px">
-                <Slide><img src="images/canada.jpg" /></Slide>
-                <Slide><img src="images/landscape1.jpg" /></Slide>
-                <Slide><img src="images/logs.jpg" /></Slide>
-                <Slide><img src="images/sunrise.jpg" /></Slide>
+                <Slide><img src="images/canada.jpg" alt=""/></Slide>
+                <Slide><img src="images/landscape1.jpg" alt=""/></Slide>
+                <Slide><img src="images/logs.jpg" alt=""/></Slide>
+                <Slide><img src="images/sunrise.jpg" alt=""/></Slide>
               </Carousel>);
 
   let src2 = `<Carousel width="800px" height="500px">
-                <Slide><img src="images/canada.jpg" /></Slide>
-                <Slide><img src="images/landscape1.jpg" /></Slide>
-                <Slide><img src="images/logs.jpg" /></Slide>
-                <Slide><img src="images/sunrise.jpg" /></Slide>
+                <Slide><img src="images/canada.jpg" alt=""/></Slide>
+                <Slide><img src="images/landscape1.jpg" alt=""/></Slide>
+                <Slide><img src="images/logs.jpg" alt=""/></Slide>
+                <Slide><img src="images/sunrise.jpg" alt=""/></Slide>
               </Carousel>`;
   let demo2 = WithSrc.createDemo(code2, src2);
   return (

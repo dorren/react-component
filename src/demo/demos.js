@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './demos.css';
 import logo from '../logo.svg';
@@ -7,6 +6,7 @@ import '../App.css';
 import DemoFadeIn from './demo_fade_in';
 import DemoSlideIn from './demo_slide_in';
 import DemoCarousel from './demo_carousel';
+import DemoProgressBar from './demo_progress_bar';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -29,11 +29,17 @@ class Demos extends React.Component {
       this.setState({currentDemo: (<DemoSlideIn />)});
     }else if(key === 'Carousel'){
       this.setState({currentDemo: (<DemoCarousel />)});
+    }else if(key === 'ProgressBar'){
+      this.setState({currentDemo: (<DemoProgressBar />)});
     }else{
     }
   }
 
   render() {
+    let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar"];
+    let links = names.map( (name,i) =>
+      (<li onClick={this.showDemo} key={i} data-name={name}>{name}</li>));
+
     return (
       <div className="Demos">
         <div className="Menu">
@@ -43,10 +49,7 @@ class Demos extends React.Component {
             </div>
           </div>
           <ul>
-            <li onClick={this.showDemo} data-name="Home">Home</li>
-            <li onClick={this.showDemo} data-name="FadeIn">FadeIn</li>
-            <li onClick={this.showDemo} data-name="SlideIn">SlideIn</li>
-            <li onClick={this.showDemo} data-name="Carousel">Carousel</li>
+            { links }
           </ul>
 
         </div>
