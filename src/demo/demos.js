@@ -11,6 +11,14 @@ import DemoProgressBar from './demo_progress_bar';
 class Demos extends React.Component {
   constructor(props) {
     super(props);
+
+    this.choices = {
+      'Home': this.defaultDemo(),
+      'FadeIn':  (<DemoFadeIn />),
+      'SlideIn': (<DemoSlideIn />),
+      'Carousel':(<DemoCarousel />),
+      'ProgressBar': (<DemoProgressBar />)
+    };
     this.state = {currentDemo: this.defaultDemo()};
   }
 
@@ -20,19 +28,7 @@ class Demos extends React.Component {
 
   showDemo = (ev) => {
     let key = ev.target.dataset.name;
-
-    if(key === 'Home'){
-      this.setState({currentDemo: this.defaultDemo()});
-    }else if(key === 'FadeIn'){
-      this.setState({currentDemo: (<DemoFadeIn />)});
-    }else if(key === 'SlideIn'){
-      this.setState({currentDemo: (<DemoSlideIn />)});
-    }else if(key === 'Carousel'){
-      this.setState({currentDemo: (<DemoCarousel />)});
-    }else if(key === 'ProgressBar'){
-      this.setState({currentDemo: (<DemoProgressBar />)});
-    }else{
-    }
+    this.setState({currentDemo: this.choices[key]});
   }
 
   render() {
