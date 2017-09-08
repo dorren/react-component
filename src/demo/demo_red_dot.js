@@ -54,7 +54,7 @@ var DemoRedDot = function(props){
 
    let src3 = `
      /**
-      *   <Widget count={3} showCount={true} /> 
+      *   <Widget count={3} showCount={true} />
       */
      class Widget extends React.Component {
        /* ... brevify ... */
@@ -82,6 +82,7 @@ var DemoRedDot = function(props){
     <div>
       <div className="desc">
          RedDot is used to decorate other React Components.
+         Try clicking on the components.
       </div>
       { demo  }
       { demo2 }
