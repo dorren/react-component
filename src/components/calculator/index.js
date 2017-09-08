@@ -1,45 +1,60 @@
 import React from 'react';
 import './calculator.css';
-import Lcd from './lcd';
 import Key from './key';
+import Worker from './worker';
 
 class Calculator extends React.Component {
+  constructor(props){
+    super(props);
+    this.worker = new Worker();
+    this.state = {value: this.worker.output()};
+  }
+
+  onPress = val => {
+    this.worker.accept(val);
+    this.setState({value: this.worker.output()});
+  }
+
   render() {
+    let lcd_css = this.state.value > 10000000 ? "lcd bigNum" : "lcd";
+
     return (
       <div className="calc">
         <table className="keypad">
           <tbody>
             <tr>
-              <Lcd />
+              <td colSpan="4" className={ lcd_css }>
+                { this.state.value }
+              </td>
             </tr>
             <tr>
-              <Key value="C" isLeft="true" />
-              <Key value="±" />
-              <Key value="%" />
-              <Key value="÷" color="orange"/>
+              <Key value="C" onPress={ this.onPress } isLeft="true" />
+              <Key value="±" onPress={ this.onPress } />
+              <Key value="%" onPress={ this.onPress } />
+              <Key value="÷" onPress={ this.onPress } color="orange"/>
             </tr>
             <tr>
-              <Key value="7" isLeft="true" />
-              <Key value="8" />
-              <Key value="9" />
-              <Key value="×" color="orange"/>
+              <Key value="7" onPress={ this.onPress } isLeft="true" />
+              <Key value="8" onPress={ this.onPress }/>
+              <Key value="9" onPress={ this.onPress } />
+              <Key value="×" onPress={ this.onPress } color="orange"/>
             </tr>
             <tr>
-              <Key value="4" isLeft="true" />
-              <Key value="5" />
-              <Key value="6" />
-              <Key value="−" color="orange"/>
+              <Key value="4" onPress={ this.onPress } isLeft="true" />
+              <Key value="5" onPress={ this.onPress } />
+              <Key value="6" onPress={ this.onPress } />
+              <Key value="−" onPress={ this.onPress } color="orange"/>
             </tr>
             <tr>
-              <Key value="1" isLeft="true" />
-              <Key value="2" />
-              <Key value="3" />
-              <Key value="+" color="orange"/>
+              <Key value="1" onPress={ this.onPress } isLeft="true" />
+              <Key value="2" onPress={ this.onPress } />
+              <Key value="3" onPress={ this.onPress } />
+              <Key value="+" onPress={ this.onPress } color="orange"/>
             </tr>
             <tr>
-              <Key value="0" span="2" isLeft={true}/>
-              <Key value="." />
-              <Key value="=" color="orange"/>
+              <Key value="0" onPress={ this.onPress } span="2" isLeft={true}/>
+              <Key value="." onPress={ this.onPress } />
+              <Key value="=" onPress={ this.onPress } color="orange"/>
             </tr>
           </tbody>
         </table>

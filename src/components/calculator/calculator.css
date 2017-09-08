@@ -8,9 +8,15 @@
   width: 100%;
   background: #29292E;
   color: #FFF;
-  font-size: 300%;
-  height: 1em;
+  font-size: 250%;
   margin: 0;
+  padding: 5px;
+  text-align: right;
+  height: 55px;
+}
+.calc .lcd.bigNum {
+  font-size: 150%;
+  height: 55px;
 }
 
 .calc table.keypad {
