@@ -8,6 +8,7 @@ import DemoSlideIn from './demo_slide_in';
 import DemoCarousel from './demo_carousel';
 import DemoProgressBar from './demo_progress_bar';
 import DemoRedDot from './demo_red_dot';
+import Calculator from '../components/calculator';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class Demos extends React.Component {
       'SlideIn': (<DemoSlideIn />),
       'Carousel':(<DemoCarousel />),
       'ProgressBar': (<DemoProgressBar />),
-      'RedDot': (<DemoRedDot />)
+      'RedDot': (<DemoRedDot />),
+      'Calculator': this.calculatorDemo()
     };
     this.state = {currentDemo: this.defaultDemo()};
   }
@@ -28,13 +30,18 @@ class Demos extends React.Component {
     return (<p>React Components demos</p>);
   }
 
+  calculatorDemo() {
+    return (<Calculator />);
+  }
+
   showDemo = (ev) => {
     let key = ev.target.dataset.name;
     this.setState({currentDemo: this.choices[key]});
   }
 
   render() {
-    let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar", "RedDot"];
+    let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar",
+                 "RedDot", "Calculator"];
     let links = names.map( (name,i) =>
       (<li onClick={this.showDemo} key={i} data-name={name}>{name}</li>));
 

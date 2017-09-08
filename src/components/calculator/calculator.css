@@ -1,0 +1,35 @@
+.calc {
+  width: auto;
+}
+.calc tr {
+  border-spacing: 0;
+}
+.calc .lcd {
+  width: 100%;
+  background: #29292E;
+  color: #FFF;
+  font-size: 300%;
+  height: 1em;
+  margin: 0;
+}
+
+.calc table.keypad {
+  border-spacing: 0;
+}
+
+.calc .keypad .key {
+  background: #EEE;
+  color: #333;
+  padding: 10px 15px;
+  border-right: 1px solid #777;
+  border-bottom: 1px solid #777;
+}
+
+.calc .keypad .key.left {
+  border-left: 1px solid #777;
+}
+
+.calc .keypad .key.orange {
+  color: #FFF;
+  background: #F5923E; /* orange */
+}
