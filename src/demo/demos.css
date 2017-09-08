@@ -27,9 +27,16 @@
 .Demos .DemoBox {
   border-radius: 10px;
   border: 1px solid #DDD;
-  padding: 10px;
+  padding: 5px;
   margin-bottom: 10px;
 }
 .Demos .demo {
   overflow: hidden;
+  padding: 10px;
+}
+.Demos .desc {
+  padding: 10px;
+}
+.Demos pre.hljs {
+  background: #F7F7F7;
 }

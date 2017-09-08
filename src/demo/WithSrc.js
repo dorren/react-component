@@ -1,7 +1,7 @@
 import React from 'react';
 import pretty from 'pretty';
 import hljs from 'highlightjs';
-import  'highlightjs/styles/github.css';
+import  'highlightjs/styles/vs.css';
 
 /**
  * shows actual working component and its source.
@@ -20,7 +20,7 @@ class WithSrc extends React.Component {
         </div>
 
         <pre ref={(dom) => { this.srcDom = dom; }}>
-          <code className="html">
+          <code className={this.props.lang ? this.props.lang : "html"}>
             { this.props.src }
           </code>
         </pre>
@@ -28,10 +28,10 @@ class WithSrc extends React.Component {
     )
   }
 
-  static createDemo(code, str){
-    let src = pretty(str);
+  static createDemo(code, str, lang="html", prettify=true){
+    let src = prettify ? pretty(str) : str;
 
-    return (<WithSrc code={code}  src={src} />);
+    return (<WithSrc code={code}  src={src} lang={lang} />);
   }
 }
 

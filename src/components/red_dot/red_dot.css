@@ -1,0 +1,33 @@
+.RedDot {
+  position: relative;
+  width: auto;
+  margin: 0;
+  display: inline-block;
+}
+
+.RedDot > .Dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -4px;
+  margin-right: -4px;
+  border-radius: 50%;
+  width:  10px;
+  height: 10px;
+  background: #FF0000;
+}
+
+.RedDot > .Dot.WithCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -6px;
+  margin-right: -6px;
+  border-radius: 50%;
+  width:  16px;
+  height: 16px;
+  background: #FF0000;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 80%;
+}

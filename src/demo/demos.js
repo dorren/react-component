@@ -7,6 +7,7 @@ import DemoFadeIn from './demo_fade_in';
 import DemoSlideIn from './demo_slide_in';
 import DemoCarousel from './demo_carousel';
 import DemoProgressBar from './demo_progress_bar';
+import DemoRedDot from './demo_red_dot';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class Demos extends React.Component {
       'FadeIn':  (<DemoFadeIn />),
       'SlideIn': (<DemoSlideIn />),
       'Carousel':(<DemoCarousel />),
-      'ProgressBar': (<DemoProgressBar />)
+      'ProgressBar': (<DemoProgressBar />),
+      'RedDot': (<DemoRedDot />)
     };
     this.state = {currentDemo: this.defaultDemo()};
   }
@@ -32,7 +34,7 @@ class Demos extends React.Component {
   }
 
   render() {
-    let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar"];
+    let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar", "RedDot"];
     let links = names.map( (name,i) =>
       (<li onClick={this.showDemo} key={i} data-name={name}>{name}</li>));
 
