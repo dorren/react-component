@@ -8,8 +8,7 @@ import DemoSlideIn from './demo_slide_in';
 import DemoCarousel from './demo_carousel';
 import DemoProgressBar from './demo_progress_bar';
 import DemoRedDot from './demo_red_dot';
-import Calculator from '../components/calculator';
-import WithSrc from './WithSrc';
+import DemoCalculator from './demo_calculator';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -22,19 +21,13 @@ class Demos extends React.Component {
       'Carousel':(<DemoCarousel />),
       'ProgressBar': (<DemoProgressBar />),
       'RedDot': (<DemoRedDot />),
-      'Calculator': this.calculatorDemo()
+      'Calculator': (<DemoCalculator />)
     };
     this.state = {currentDemo: this.defaultDemo()};
   }
 
   defaultDemo() {
     return (<p>React Components demos</p>);
-  }
-
-  calculatorDemo() {
-    return WithSrc.createDemo(
-                 (<Calculator />),
-                 "<Calculator />");
   }
 
   showDemo = (ev) => {

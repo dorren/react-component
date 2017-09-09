@@ -1,5 +1,6 @@
 .calc {
   width: auto;
+  border-spacing: 0;
 }
 .calc tr {
   border-spacing: 0;
@@ -22,16 +23,19 @@
   font-size: 100%;
 }
 
-.calc table.keypad {
-  border-spacing: 0;
+.calc .keypad {
+
 }
 
 .calc .keypad .key {
-  background: #EEE;
+  background: #DDD;
   color: #333;
   padding: 10px 17px;
   border-right: 1px solid #777;
   border-bottom: 1px solid #777;
+}
+.calc .keypad .key.num {
+  background: #EEE;
 }
 
 .calc .keypad .key.left {

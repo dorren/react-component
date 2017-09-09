@@ -3,10 +3,20 @@
  */
 class Worker {
   static operands = ["0","1","2","3","4","5","6","7","8","9","."];
-  static operators = ["+","−","×","÷","=","%","±"];
+  static operators = ["+","−","×","÷","=","%","±",
+                      "square", "sqrt", "cube", "x^y", "1/x", "x!",
+                      "10^x","Rand"];
 
   constructor(){
     this.clear();
+  }
+
+  factorial(n){
+    if(n === 1){
+      return 1;
+    }else{
+      return n * this.factorial(n-1);
+    }
   }
 
   calc(){
@@ -23,6 +33,8 @@ class Worker {
       result = a / b;
     }else if(this.operator === "%"){
       result = a % b;
+    }else if(this.operator === "x^y"){
+      result = Math.pow(a, b);
     }
     return result;
   }
@@ -64,6 +76,20 @@ class Worker {
       this.nums[this.idx] = this.nums[this.idx] * (-1);
     }else if(val === "%"){  // percent
       this.nums[this.idx] = this.nums[this.idx] / 100;
+    }else if(val === "square"){
+      this.nums[this.idx] = this.nums[this.idx] * this.nums[this.idx];
+    }else if(val === "sqrt"){
+      this.nums[this.idx] = Math.sqrt(this.nums[this.idx]);
+    }else if(val === "cube"){
+      this.nums[this.idx] = Math.pow(this.nums[this.idx],3);
+    }else if(val === "1/x"){
+      this.nums[this.idx] = 1/ this.nums[this.idx];
+    }else if(val === "x!"){
+      this.nums[this.idx] = this.factorial(this.nums[this.idx]);
+    }else if(val === "10^x"){
+      this.nums[this.idx] = Math.pow(10, this.nums[this.idx]);
+    }else if(val === "Rand"){
+      this.nums[this.idx] = Math.random();
     }else if( val === "="){
       this.nums[0] = this.calc();
       this.nums[1] = null;
