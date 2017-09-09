@@ -46,3 +46,7 @@
   color: #FFF;
   background: #F5923E; /* orange */
 }
+
+@keyframes  keyPressed {    from { background: #B9B9B9; } to { background: #B9B9B9; } }
+@keyframes  numPressed {    from { background: #D8D8D8; } to { background: #D8D8D8; } }
+@keyframes  orangePressed { from { background: #E06D0B; } to { background: #E06D0B; } }

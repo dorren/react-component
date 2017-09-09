@@ -38,6 +38,7 @@ class Worker {
 
   calc(){
     let [a,b] = this.nums;
+
     return this.constructor.operations[this.operator](a, b);
   }
 
@@ -86,10 +87,12 @@ class Worker {
       }
       this.operator = val;
     }else if( val === "="){
-      this.nums[0] = this.calc();
-      this.nums[1] = null;
+      if(this.idx === 1){
+        this.nums[0] = this.calc();
+        this.nums[1] = null;
+        this.idx = 0;
+      }
       this.operator = null;
-      this.idx = 0;
     }else{  // unary operator
       let fn = this.constructor.operations[val];
       this.nums[this.idx] = fn(this.nums[this.idx]);
@@ -105,10 +108,9 @@ class Worker {
    *   n: operand value
    *   op: operator value
    *
-   *                        / <----- n <-----\
-   *                       /                  \
-   *               n --> (S1) ----- op -----> (S2) <-- op
-   *
+   *                / <----- n <-----\
+   *               /                  \
+   *       n --> (S1) ----- op -----> (S2) <-- op
    *
    */
   accept(val){
