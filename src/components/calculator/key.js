@@ -3,28 +3,7 @@ import './calculator.css';
 
 class Key extends React.Component {
   onPress = () => {
-    this.setStyle();
     this.props.onPress(this.props.value);
-  }
-
-  clearAnimation = () => {
-    this.style = {};
-    this.forceUpdate();
-  }
-
-  setStyle(){
-    let s = 0.3;
-    let classes = this.props.classes;
-    this.style = {animation: `${s}s keyPressed`};
-
-    if(classes && classes.indexOf("orange") !== -1){
-      this.style={animation: `${s}s orangePressed`};
-    }else if(classes && classes.indexOf("num") !== -1){
-      this.style={animation: `${s}s numPressed`};
-    }
-    this.setState({}, () => {
-      window.setTimeout(this.clearAnimation, s*1000);
-    });
   }
 
   keyText() {
@@ -35,14 +14,27 @@ class Key extends React.Component {
     }
   }
 
+  mouseDown = () =>{
+    this.pressed = true;
+    this.forceUpdate();
+  }
+  mouseUp = () =>{
+    this.pressed = false;
+    this.forceUpdate();
+  }
+
   render() {
     let span = this.props.span ? this.props.span : 1;
     let classes = this.props.classes ? `key ${this.props.classes}` : "key";
+    if(this.pressed)
+      classes += " pressed";
+
 
     return (
       <td colSpan={span} className={classes}
           onClick={ this.onPress }
-          style={this.style}
+          onMouseDown = { this.mouseDown }
+          onMouseUp =   { this.mouseUp   }
           >
         { this.keyText() }
       </td>
