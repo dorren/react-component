@@ -63,7 +63,7 @@ class Keypad extends React.Component {
           <Key value="square" display={<span>x<sup>2</sup></span>} onPress={ this.onPress }  />
           <Key value="cube"   display={<span>x<sup>3</sup></span>} onPress={ this.onPress }  />
           <Key value="x^y"    display={<span>x<sup>y</sup></span>} onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
+          <Key value="e^x"    display={<span>e<sup>x</sup></span>} onPress={ this.onPress }  />
           <Key value="10^x"    display={<span>10<sup>x</sup></span>} onPress={ this.onPress }  />
           <Key value="7" onPress={ this.onPress } classes="num" />
           <Key value="8" onPress={ this.onPress } classes="num" />
@@ -100,7 +100,7 @@ class Keypad extends React.Component {
           <Key value="" onPress={ this.onPress }  />
           <Key value="" onPress={ this.onPress }  />
           <Key value="" onPress={ this.onPress }  />
-          <Key value="Rand" onPress={ this.onPress }  />
+          <Key value="Rnd" onPress={ this.onPress }  />
           <Key value="0" onPress={ this.onPress } classes="num" span="2" />
           <Key value="." onPress={ this.onPress } classes="num" />
           <Key value="=" onPress={ this.onPress } classes="orange"/>

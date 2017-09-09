@@ -5,7 +5,7 @@ class Worker {
   static operands = ["0","1","2","3","4","5","6","7","8","9","."];
   static operators = ["+","−","×","÷","=","%","±",
                       "square", "sqrt", "cube", "x^y", "1/x", "x!",
-                      "10^x","Rand"];
+                      "10^x","Rnd","e^x"];
 
   constructor(){
     this.clear();
@@ -88,7 +88,9 @@ class Worker {
       this.nums[this.idx] = this.factorial(this.nums[this.idx]);
     }else if(val === "10^x"){
       this.nums[this.idx] = Math.pow(10, this.nums[this.idx]);
-    }else if(val === "Rand"){
+    }else if(val === "e^x"){
+      this.nums[this.idx] = Math.exp(this.nums[this.idx]);
+    }else if(val === "Rnd"){
       this.nums[this.idx] = Math.random();
     }else if( val === "="){
       this.nums[0] = this.calc();
@@ -116,16 +118,13 @@ class Worker {
    *
    *                        / <----- n <-----\
    *                       /                  \
-   * (S0) ----- n -----> (S1) ----- op -----> (S2)
+   *               n --> (S1) ----- op -----> (S2) <-- op
    *
    *
    */
   accept(val){
     if(val === "C"){
       this.clear();
-    }else if( this.state === 0 && this.isOperand(val) ){
-      this.doOperand(val);
-      this.state = 1;
     }else if( this.state === 1 ){
       if(this.isOperand(val)){
         this.doOperand(val);
@@ -148,7 +147,7 @@ class Worker {
   }
 
   clear(){
-    this.state = 0;
+    this.state = 1;
     this.stack = []; // accepting operand characters.
     this.nums = [null, null];  // 2 numbers, operand 1, 2
     this.idx = 0;    // index for the nums above, if operator added, change to 1.
