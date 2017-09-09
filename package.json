@@ -2,6 +2,13 @@
   "name": "react-components",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0"
+  },
   "dependencies": {
     "highlight": "^0.2.4",
     "highlightjs": "^9.10.0",
@@ -14,6 +21,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test:unit": "ava",
+    "test:watch": "ava --watch",
     "eject": "react-scripts eject"
+  },
+  "ava": {
+    "files": [
+      "test/**/*test.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }

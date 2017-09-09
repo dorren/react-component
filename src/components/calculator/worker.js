@@ -2,44 +2,56 @@
  * the class that does the actual math.
  */
 class Worker {
-  static operands = ["0","1","2","3","4","5","6","7","8","9","."];
-  static operations = {
-    "+": (a,b) => {return a + b; },
-    "−": (a,b) => {return a - b; },
-    "×": (a,b) => {return a * b; },
-    "÷": (a,b) => {return a / b; },
-    "=": (a,b) => {return; /* no op*/ },
-    "%":  (x)  => {return x / 100; },
-    "±":  (x)  => {return x * (-1); },
-    "square":  (x)  => {return x * x; },
-    "sqrt":    (x)  => {return Math.sqrt(x); },
-    "cube":    (x)  => {return Math.pow(x, 3); },
-    "10^x":    (x)  => {return Math.pow(10,x); },
-    "x^y":   (a,b)  => {return Math.pow(a, b); },
-    "e^x":     (x)  => {return Math.exp(x);},
-    "1/x":     (x)  => {return 1 / x; },
-    "x!":      (x)  => {return this.factorial(x); },
-    "Rnd":      ()  => {return Math.random(); }
-  };
-  static operators = Object.keys(Worker.operations);
-  static binaryOperators = ["+","−","×","÷","x^y"];
+  static operands(){
+    return ["0","1","2","3","4","5","6","7","8","9","."];
+  }
+
+  static operations() {
+    return {
+      "+": (a,b) => {return a + b; },
+      "−": (a,b) => {return a - b; },
+      "×": (a,b) => {return a * b; },
+      "÷": (a,b) => {return a / b; },
+      "=": (a,b) => {return; /* no op*/ },
+      "%":  (x)  => {return x / 100; },
+      "±":  (x)  => {return x * (-1); },
+      "square":  (x)  => {return x * x; },
+      "sqrt":    (x)  => {return Math.sqrt(x); },
+      "cube":    (x)  => {return Math.pow(x, 3); },
+      "10^x":    (x)  => {return Math.pow(10,x); },
+      "x^y":   (a,b)  => {return Math.pow(a, b); },
+      "e^x":     (x)  => {return Math.exp(x);},
+      "1/x":     (x)  => {return 1 / x; },
+      "x!":      (x)  => {return this.factorial(x); },
+      "Rnd":      ()  => {return Math.random(); }
+    };
+  }
+
+  static operators(){
+    return Object.keys(Worker.operations);
+  }
+
+  static binaryOperators() {
+    return ["+","−","×","÷","x^y"];
+  }
+
+
+  static factorial(n){
+    let result = 1;
+    while(n > 1){
+      result = result * n--;
+    }
+    return result;
+  }
 
   constructor(){
     this.clear();
   }
 
-  factorial(n){
-    if(n === 1){
-      return 1;
-    }else{
-      return n * this.factorial(n-1);
-    }
-  }
-
   calc(){
     let [a,b] = this.nums;
 
-    return this.constructor.operations[this.operator](a, b);
+    return this.constructor.operations()[this.operator](a, b);
   }
 
   output(){
@@ -53,15 +65,15 @@ class Worker {
   }
 
   isOperand(val){
-    return this.constructor.operands.indexOf(val) !== -1;
+    return this.constructor.operands().indexOf(val) !== -1;
   }
 
   isOperator(val){
-    return this.constructor.operators.indexOf(val) !== -1;
+    return this.constructor.operators().indexOf(val) !== -1;
   }
 
   isBinaryOperator(val){
-    return this.constructor.binaryOperators.indexOf(val) !== -1;
+    return this.constructor.binaryOperators().indexOf(val) !== -1;
   }
 
   doOperand(val){
@@ -94,7 +106,7 @@ class Worker {
       }
       this.operator = null;
     }else{  // unary operator
-      let fn = this.constructor.operations[val];
+      let fn = this.constructor.operations()[val];
       if(fn)
         this.nums[this.idx] = fn(this.nums[this.idx]);
     }
