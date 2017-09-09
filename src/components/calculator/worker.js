@@ -3,9 +3,26 @@
  */
 class Worker {
   static operands = ["0","1","2","3","4","5","6","7","8","9","."];
-  static operators = ["+","−","×","÷","=","%","±",
-                      "square", "sqrt", "cube", "x^y", "1/x", "x!",
-                      "10^x","Rnd","e^x"];
+  static operations = {
+    "+": (a,b) => {return a + b; },
+    "−": (a,b) => {return a - b; },
+    "×": (a,b) => {return a * b; },
+    "÷": (a,b) => {return a / b; },
+    "=": (a,b) => {return; /* no op*/ },
+    "%":  (x)  => {return x / 100; },
+    "±":  (x)  => {return x * (-1); },
+    "square":  (x)  => {return x * x; },
+    "sqrt":    (x)  => {return Math.sqrt(x); },
+    "cube":    (x)  => {return Math.pow(x, 3); },
+    "10^x":    (x)  => {return Math.pow(10,x); },
+    "x^y":   (a,b)  => {return Math.pow(a, b); },
+    "e^x":     (x)  => {return Math.exp(x);},
+    "1/x":     (x)  => {return 1 / x; },
+    "x!":      (x)  => {return this.factorial(x); },
+    "Rnd":      ()  => {return Math.random(); }
+  };
+  static operators = Object.keys(Worker.operations);
+  static binaryOperators = ["+","−","×","÷","x^y"];
 
   constructor(){
     this.clear();
@@ -20,23 +37,8 @@ class Worker {
   }
 
   calc(){
-    let result = null;
     let [a,b] = this.nums;
-
-    if(this.operator === "+"){
-      result = a + b;
-    }else if(this.operator === "−"){
-      result = a - b;
-    }else if(this.operator === "×"){
-      result = a * b;
-    }else if(this.operator === "÷"){
-      result = a / b;
-    }else if(this.operator === "%"){
-      result = a % b;
-    }else if(this.operator === "x^y"){
-      result = Math.pow(a, b);
-    }
-    return result;
+    return this.constructor.operations[this.operator](a, b);
   }
 
   output(){
@@ -57,6 +59,10 @@ class Worker {
     return this.constructor.operators.indexOf(val) !== -1;
   }
 
+  isBinaryOperator(val){
+    return this.constructor.binaryOperators.indexOf(val) !== -1;
+  }
+
   doOperand(val){
     this.stack.push(val);
   }
@@ -72,38 +78,21 @@ class Worker {
   doOperator(val){
     this.getNum();
 
-    if(val === "±"){
-      this.nums[this.idx] = this.nums[this.idx] * (-1);
-    }else if(val === "%"){  // percent
-      this.nums[this.idx] = this.nums[this.idx] / 100;
-    }else if(val === "square"){
-      this.nums[this.idx] = this.nums[this.idx] * this.nums[this.idx];
-    }else if(val === "sqrt"){
-      this.nums[this.idx] = Math.sqrt(this.nums[this.idx]);
-    }else if(val === "cube"){
-      this.nums[this.idx] = Math.pow(this.nums[this.idx],3);
-    }else if(val === "1/x"){
-      this.nums[this.idx] = 1/ this.nums[this.idx];
-    }else if(val === "x!"){
-      this.nums[this.idx] = this.factorial(this.nums[this.idx]);
-    }else if(val === "10^x"){
-      this.nums[this.idx] = Math.pow(10, this.nums[this.idx]);
-    }else if(val === "e^x"){
-      this.nums[this.idx] = Math.exp(this.nums[this.idx]);
-    }else if(val === "Rnd"){
-      this.nums[this.idx] = Math.random();
-    }else if( val === "="){
-      this.nums[0] = this.calc();
-      this.nums[1] = null;
-      this.operator = null;
-      this.idx = 0;
-    }else{
+    if(this.isBinaryOperator(val)){
       if(this.idx === 1){
         this.nums[0] = this.calc();
         this.nums[1] = null;
         this.idx = 0;
       }
       this.operator = val;
+    }else if( val === "="){
+      this.nums[0] = this.calc();
+      this.nums[1] = null;
+      this.operator = null;
+      this.idx = 0;
+    }else{  // unary operator
+      let fn = this.constructor.operations[val];
+      this.nums[this.idx] = fn(this.nums[this.idx]);
     }
   }
 
