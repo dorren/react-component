@@ -95,7 +95,8 @@ class Worker {
       this.operator = null;
     }else{  // unary operator
       let fn = this.constructor.operations[val];
-      this.nums[this.idx] = fn(this.nums[this.idx]);
+      if(fn)
+        this.nums[this.idx] = fn(this.nums[this.idx]);
     }
   }
 
