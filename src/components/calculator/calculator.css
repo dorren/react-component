@@ -10,13 +10,16 @@
   color: #FFF;
   font-size: 250%;
   margin: 0;
-  padding: 5px;
+  padding: 5px 10px;
   text-align: right;
   height: 55px;
+  overflow: hidden;
 }
-.calc .lcd.bigNum {
+.calc .lcd.digits13 {  /* fit 13 digits */
   font-size: 150%;
-  height: 55px;
+}
+.calc .lcd.digits20 {  /* fit 13 digits */
+  font-size: 100%;
 }
 
 .calc table.keypad {
@@ -26,7 +29,7 @@
 .calc .keypad .key {
   background: #EEE;
   color: #333;
-  padding: 10px 15px;
+  padding: 10px 17px;
   border-right: 1px solid #777;
   border-bottom: 1px solid #777;
 }

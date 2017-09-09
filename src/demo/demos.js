@@ -9,6 +9,7 @@ import DemoCarousel from './demo_carousel';
 import DemoProgressBar from './demo_progress_bar';
 import DemoRedDot from './demo_red_dot';
 import Calculator from '../components/calculator';
+import WithSrc from './WithSrc';
 
 class Demos extends React.Component {
   constructor(props) {
@@ -31,7 +32,9 @@ class Demos extends React.Component {
   }
 
   calculatorDemo() {
-    return (<Calculator />);
+    return WithSrc.createDemo(
+                 (<Calculator />),
+                 "<Calculator />");
   }
 
   showDemo = (ev) => {

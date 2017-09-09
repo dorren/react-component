@@ -16,7 +16,13 @@ class Calculator extends React.Component {
   }
 
   render() {
-    let lcd_css = this.state.value > 10000000 ? "lcd bigNum" : "lcd";
+    let str = "" + this.state.value;
+    let lcd_css = "lcd";
+    if(str.length > 13){
+      lcd_css += " digits20";
+    }else if (str.length > 7){
+      lcd_css += " digits13";
+    }
 
     return (
       <div className="calc">

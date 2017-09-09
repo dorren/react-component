@@ -3,7 +3,7 @@
  */
 class Worker {
   static operands = ["0","1","2","3","4","5","6","7","8","9","."];
-  static operators = ["+","−","×","÷","%","±","=","C"];
+  static operators = ["+","−","×","÷","="];
 
   constructor(){
     this.result = 0;
@@ -24,17 +24,29 @@ class Worker {
     }else if(val === "C"){
       this.result = 0;
       this.clear();
+    }else if(val === "±"){
+      let n = parseFloat(this.nums[this.idx]) * (-1);
+      this.nums[this.idx] = "" + n;
+      this.result = this.nums[this.idx];
+    }else if(val === "%"){
+      let n = parseFloat(this.nums[this.idx]) / 100;
+      this.nums[this.idx] = n;
+      this.result = this.nums[this.idx];
     }else if(this.isOperator(val)){
-      this.operator = val;
-    }else if(this.isOperand(val)){
-      if(this.operator === null){
-        this.num1.push(val);
+      if(this.operator !== null){
+        this.calc();
+        this.nums[0] = "" + this.result;
+        this.operator = val;
+        this.idx = 1;
       }else{
-        this.num2.push(val);
+        this.operator = val;
+        this.idx++;
       }
-      this.result = val;
+    }else if(this.isOperand(val)){
+      this.nums[this.idx] += val;
+      this.result = this.nums[this.idx];
     }
-    console.log(val, this.num1, this.operator, this.num2, "=", this.result);
+    console.log(val, ", ", this.nums[0], this.operator, this.nums[1], "=", this.result);
   }
 
   arrToNum(arr){
@@ -42,8 +54,8 @@ class Worker {
   }
 
   calc(){
-    let a = this.arrToNum(this.num1);
-    let b = this.arrToNum(this.num2);
+    let a = parseFloat(this.nums[0], 10);
+    let b = parseFloat(this.nums[1], 10);
 
     if(this.operator === "+"){
       this.result = a + b;
@@ -66,8 +78,8 @@ class Worker {
   }
 
   clear(){
-    this.num1 = [];
-    this.num2 = [];
+    this.nums = ["", ""];  // keep 2 numbers
+    this.idx = 0; // current index for the nums above, if operator added, change to 1.
     this.operator = null;
   }
 }
