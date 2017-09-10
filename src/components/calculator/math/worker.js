@@ -1,3 +1,5 @@
+import NumNode from './num_node';
+
 /**
  * the class that does the actual math.
  */
@@ -25,7 +27,7 @@ class Worker {
       "e^x":     (x)  => {return Math.exp(x);},
       "1/x":     (x)  => {return 1 / x; },
       "x!":      (x)  => {return this.factorial(x); },
-      "Rnd":      ()  => {return Math.random(); },
+      "":      ()  => {return Math.random(); },
       "ln":      (x)  => {return Math.log(x); },
       "log10":   (x)  => {return Math.log10(x); },
       "sin":     (x)  => {return Math.sin(x); },
@@ -64,12 +66,10 @@ class Worker {
   }
 
   output(){
-    if(this.state === 0){
-      return 0;
-    }else if(this.state === 1){
+    if(this.state === 1){
       return this.stack.join("");
     }else{
-      return this.nums[this.idx];
+      return this.node.value;
     }
   }
 
@@ -89,30 +89,32 @@ class Worker {
     this.stack.push(val);
   }
 
-  getNum() {
-    if(this.nums[this.idx] === null){
-      this.nums[this.idx] = parseFloat(this.stack.join(""), 10);
+  // empty stack, and set number value.
+  setNum(node) {
+    if(node.isEmpty()){
+      let n = parseFloat(this.stack.join(""), 10);
+      node.value = n;
       this.stack = [];
     }
-    return this.nums[this.idx];
   }
 
   doOperator(val){
-    this.getNum();
-
+    this.setNum(this.node);
+    this.log("doOp2 ", val);
     if(this.isBinaryOperator(val)){
-      if(this.idx === 1){
-        this.nums[0] = this.calc();
-        this.nums[1] = null;
-        this.idx = 0;
+      if(this.node.isRightChild()){
+        this.node = this.node.parent;
+        this.node.reduce();
       }
-      this.operator = val;
+      if(val !== "=")
+        this.node.addOperator(val);
     }else{  // unary operator
       let fn = this.constructor.operations()[val];
       if(fn){
-        this.nums[this.idx] = fn(this.nums[this.idx]);
+        this.node.value = fn(this.node.value);
       }
     }
+    this.log("doOp3 ", val);
   }
 
   /**
@@ -129,6 +131,7 @@ class Worker {
    *
    */
   accept(val){
+    this.log("acc1  ", val);
     if(val === "C"){
       this.clear();
     }else if( this.state === 1 ){
@@ -141,9 +144,9 @@ class Worker {
     }else if( this.state === 2 ){
       if(this.isOperand(val)){
         if(this.operator === '='){ // last operator.
-          this.nums[this.idx] = null;
+          this.clear();
         }else{
-          this.idx = (this.idx + 1) % 2;
+          this.node = this.node.makeRightNode();
         }
         this.doOperand(val);
         this.state = 1;
@@ -152,17 +155,22 @@ class Worker {
       }
     }
 
-    console.log(`v:${val}, S:${this.state}, idx:${this.idx}, `,
+    this.log("acc2  ", val);
+  }
+
+  log(loc, val){
+    console.log(`${loc} v:${val}, S:${this.state}, `,
                 `stack:[${this.stack.join(',')}], `,
-                `nums:[${this.nums.join(',')}], op:${this.operator}`);
+                `nodes:${this.root.toStr()}, `,
+                `curr: ${this.node.toStr()}`);
   }
 
   clear(){
     this.state = 1;
+    this.root = new NumNode();
+    this.node = this.root;
+
     this.stack = [];           // accepting operand characters.
-    this.nums = [null, null];  // 2 numbers, operand 1, 2
-    this.idx = 0;    // index for the nums above, if operator added, change to 1.
-    this.operator = null;
   }
 }
 

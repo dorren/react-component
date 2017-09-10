@@ -2,7 +2,7 @@ import React from 'react';
 import './calculator.css';
 import Lcd from './lcd';
 import Keypad from './keypad';
-import Worker from './worker';
+import Worker from './math/worker';
 
 class Calculator extends React.Component {
   constructor(props){
