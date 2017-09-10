@@ -17,13 +17,22 @@ class Worker {
       "±":  (x)  => {return x * (-1); },
       "square":  (x)  => {return x * x; },
       "sqrt":    (x)  => {return Math.sqrt(x); },
+      "3√":      (x)  => {return Math.pow(x, 1/3); },
+      "y√x":     (x,y)=> {return Math.pow(x, 1/y); },
       "cube":    (x)  => {return Math.pow(x, 3); },
       "10^x":    (x)  => {return Math.pow(10,x); },
       "x^y":   (a,b)  => {return Math.pow(a, b); },
       "e^x":     (x)  => {return Math.exp(x);},
       "1/x":     (x)  => {return 1 / x; },
       "x!":      (x)  => {return this.factorial(x); },
-      "Rnd":      ()  => {return Math.random(); }
+      "Rnd":      ()  => {return Math.random(); },
+      "ln":      (x)  => {return Math.log(x); },
+      "log10":   (x)  => {return Math.log10(x); },
+      "sin":     (x)  => {return Math.sin(x); },
+      "cos":     (x)  => {return Math.cos(x); },
+      "tan":     (x)  => {return Math.tan(x); },
+      "e":        ()  => {return Math.E; },
+      "Pi":       ()  => {return Math.PI; },
     };
   }
 
@@ -32,7 +41,7 @@ class Worker {
   }
 
   static binaryOperators() {
-    return ["+","−","×","÷","x^y","="];
+    return ["+", "−", "×", "÷", "=", "x^y", "y√x"];
   }
 
 
@@ -100,8 +109,9 @@ class Worker {
       this.operator = val;
     }else{  // unary operator
       let fn = this.constructor.operations()[val];
-      if(fn)
+      if(fn){
         this.nums[this.idx] = fn(this.nums[this.idx]);
+      }
     }
   }
 
@@ -130,7 +140,11 @@ class Worker {
       }
     }else if( this.state === 2 ){
       if(this.isOperand(val)){
-        this.idx = (this.idx + 1) % 2;
+        if(this.operator === '='){ // last operator.
+          this.nums[this.idx] = null;
+        }else{
+          this.idx = (this.idx + 1) % 2;
+        }
         this.doOperand(val);
         this.state = 1;
       }else{
@@ -138,13 +152,14 @@ class Worker {
       }
     }
 
-    console.log(`v:${val}, S:${this.state}, idx:${this.idx}, stack:`,
-                 this.stack, 'operands:', this.nums, "op:",this.operator);
+    console.log(`v:${val}, S:${this.state}, idx:${this.idx}, `,
+                `stack:[${this.stack.join(',')}], `,
+                `nums:[${this.nums.join(',')}], op:${this.operator}`);
   }
 
   clear(){
     this.state = 1;
-    this.stack = []; // accepting operand characters.
+    this.stack = [];           // accepting operand characters.
     this.nums = [null, null];  // 2 numbers, operand 1, 2
     this.idx = 0;    // index for the nums above, if operator added, change to 1.
     this.operator = null;

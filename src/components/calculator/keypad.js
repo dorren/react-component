@@ -73,10 +73,10 @@ class Keypad extends React.Component {
         <tr>
           <Key value="1/x" onPress={ this.onPress } classes="left" />
           <Key value="sqrt" display={<span><sup>2</sup>√x</span>} onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
+          <Key value="3√"   display={<span><sup>3</sup>√x</span>} onPress={ this.onPress }  />
+          <Key value="y√x"  display={<span><sup>y</sup>√x</span>} onPress={ this.onPress }  />
+          <Key value="ln"    display="ln" onPress={ this.onPress }  />
+          <Key value="log10" display={<span>log<sub>10</sub></span>} onPress={ this.onPress }  />
           <Key value="4" onPress={ this.onPress } classes="num" />
           <Key value="5" onPress={ this.onPress } classes="num" />
           <Key value="6" onPress={ this.onPress } classes="num" />
@@ -84,10 +84,10 @@ class Keypad extends React.Component {
         </tr>
         <tr>
           <Key value="x!" onPress={ this.onPress } classes="left" />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
+          <Key value="sin" onPress={ this.onPress }  />
+          <Key value="cos" onPress={ this.onPress }  />
+          <Key value="tan" onPress={ this.onPress }  />
+          <Key value="e" onPress={ this.onPress }  />
           <Key value="" onPress={ this.onPress }  />
           <Key value="1" onPress={ this.onPress } classes="num" />
           <Key value="2" onPress={ this.onPress } classes="num" />
@@ -99,7 +99,7 @@ class Keypad extends React.Component {
           <Key value="" onPress={ this.onPress }  />
           <Key value="" onPress={ this.onPress }  />
           <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
+          <Key value="Pi" onPress={ this.onPress }  />
           <Key value="Rnd" onPress={ this.onPress }  />
           <Key value="0" onPress={ this.onPress } classes="num" span="2" />
           <Key value="." onPress={ this.onPress } classes="num" />

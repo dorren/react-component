@@ -34,6 +34,10 @@
   border-right: 1px solid #777;
   border-bottom: 1px solid #777;
 }
+.calc .keypad .key sub,
+.calc .keypad .key sup {
+  font-size: 80%;
+}
 .calc .keypad .key.num {
   background: #EEE;
 }
