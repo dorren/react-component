@@ -32,7 +32,7 @@ class Worker {
   }
 
   static binaryOperators() {
-    return ["+","−","×","÷","x^y"];
+    return ["+","−","×","÷","x^y","="];
   }
 
 
@@ -98,13 +98,6 @@ class Worker {
         this.idx = 0;
       }
       this.operator = val;
-    }else if( val === "="){
-      if(this.idx === 1){
-        this.nums[0] = this.calc();
-        this.nums[1] = null;
-        this.idx = 0;
-      }
-      this.operator = null;
     }else{  // unary operator
       let fn = this.constructor.operations()[val];
       if(fn)
@@ -114,7 +107,6 @@ class Worker {
 
   /**
    * states
-   *   S0.  start
    *   S1. accepting values for operand 1.
    *   S2. got operator.
    *
@@ -123,7 +115,7 @@ class Worker {
    *
    *                / <----- n <-----\
    *               /                  \
-   *       n --> (S1) ----- op -----> (S2) <-- op
+   *         n ↻ (S1) ----- op -----> (S2) ↺ op
    *
    */
   accept(val){
