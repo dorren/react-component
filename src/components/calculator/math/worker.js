@@ -143,7 +143,7 @@ class Worker {
       }
     }else if( this.state === 2 ){
       if(this.isOperand(val)){
-        if(this.operator === '='){ // last operator.
+        if(this.node.isLeaf()){
           this.clear();
         }else{
           this.node = this.node.makeRightNode();
@@ -155,7 +155,7 @@ class Worker {
       }
     }
 
-    this.log("acc2  ", val);
+    this.log("acc4  ", val);
   }
 
   log(loc, val){
