@@ -35,6 +35,7 @@ class Worker {
       "tan":     (x)  => {return Math.tan(x); },
       "e":        ()  => {return Math.E; },
       "Pi":       ()  => {return Math.PI; },
+      "s2":      (x)  => {return x; } // change state to s2
     };
   }
 
@@ -43,7 +44,7 @@ class Worker {
   }
 
   static binaryOperators() {
-    return ["+", "−", "×", "÷", "=", "x^y", "y√x"];
+    return ["+", "−", "×", "÷", "=", "(",")","x^y", "y√x"];
   }
 
 
@@ -57,6 +58,7 @@ class Worker {
 
   constructor(){
     this.clear();
+    this.m = 0;       // support mc, m+, m-, mc buttons.
   }
 
   calc(){
@@ -69,7 +71,7 @@ class Worker {
     if(this.state === 1){
       return this.stack.join("");
     }else{
-      return this.node.value;
+      return this.node.isLeaf() ? this.node.value : this.node.left.value;
     }
   }
 
@@ -91,30 +93,44 @@ class Worker {
 
   // empty stack, and set number value.
   setNum(node) {
-    if(node.isEmpty()){
+    if(node.isEmpty() && this.stack.length > 0){
       let n = parseFloat(this.stack.join(""), 10);
       node.value = n;
       this.stack = [];
     }
   }
 
+  doParenthes(op){
+    if(op === '('){
+      if(this.node.isEmpty()){
+
+      }else{
+        this.node = this.node.makeRightNode();
+        this.node.scoped = true;
+      }
+    }
+  }
+
   doOperator(val){
     this.setNum(this.node);
-    this.log("doOp2 ", val);
     if(this.isBinaryOperator(val)){
-      if(this.node.isRightChild()){
+      if(this.node.isRightChild() && this.node.scoped === false){
         this.node = this.node.parent;
         this.node.reduce();
       }
-      if(val !== "=")
-        this.node.addOperator(val);
+      if(val !== "="){
+        if(val === '(' || val === ')'){
+          this.doParenthes(val);
+        }else{
+          this.node.addOperator(val);
+        }
+      }
     }else{  // unary operator
       let fn = this.constructor.operations()[val];
       if(fn){
         this.node.value = fn(this.node.value);
       }
     }
-    this.log("doOp3 ", val);
   }
 
   /**
@@ -131,9 +147,24 @@ class Worker {
    *
    */
   accept(val){
-    this.log("acc1  ", val);
     if(val === "C"){
       this.clear();
+    }else if(val === "mc"){
+      this.m = 0;
+    }else if(val === "m+"){
+      this.accept("s2");
+      this.m += this.node.value;
+    }else if(val === "m-"){
+      this.accept("s2");
+      this.m -= this.node.value;
+    }else if(val === "mr"){
+      this.stack = [this.m];
+      if(this.node.isLeaf()){
+        this.node.value = null;
+      }else {
+        this.node = this.node.makeRightNode();
+      }
+      this.accept("s2");
     }else if( this.state === 1 ){
       if(this.isOperand(val)){
         this.doOperand(val);
@@ -144,7 +175,7 @@ class Worker {
     }else if( this.state === 2 ){
       if(this.isOperand(val)){
         if(this.node.isLeaf()){
-          this.clear();
+          this.node.value = null; // discard old value
         }else{
           this.node = this.node.makeRightNode();
         }
@@ -155,14 +186,14 @@ class Worker {
       }
     }
 
-    this.log("acc4  ", val);
+    this.log("accept  ", val);
   }
 
   log(loc, val){
     console.log(`${loc} v:${val}, S:${this.state}, `,
                 `stack:[${this.stack.join(',')}], `,
                 `nodes:${this.root.toStr()}, `,
-                `curr: ${this.node.toStr()}`);
+                `curr: ${this.node.toStr()}, m:${this.m}`);
   }
 
   clear(){
@@ -170,7 +201,7 @@ class Worker {
     this.root = new NumNode();
     this.node = this.root;
 
-    this.stack = [];           // accepting operand characters.
+    this.stack = [];  // accepting operand characters.
   }
 }
 

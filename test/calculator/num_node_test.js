@@ -13,3 +13,10 @@ test("isRightChild()", t => {
   let b = tree.right;
   t.is(b.isRightChild(), true);
 });
+
+test("toStr()", t => {
+  let tree = new NumNode('+');
+  tree.makeLeftNode(2);
+
+  t.is(tree.toStr(), "((2) + null)");
+});

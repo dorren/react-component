@@ -47,12 +47,12 @@ class Keypad extends React.Component {
     return (
       <tbody className="keypad">
         <tr>
-          <Key value="" onPress={ this.onPress } classes="left" />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
-          <Key value="" onPress={ this.onPress }  />
+          <Key value="(" onPress={ this.onPress } classes="left" />
+          <Key value=")" onPress={ this.onPress }  />
+          <Key value="mc" onPress={ this.onPress }  />
+          <Key value="m+" onPress={ this.onPress }  />
+          <Key value="m-" onPress={ this.onPress }  />
+          <Key value="mr" onPress={ this.onPress }  />
           <Key value="C" onPress={ this.onPress } />
           <Key value="±" onPress={ this.onPress } />
           <Key value="%" onPress={ this.onPress } />

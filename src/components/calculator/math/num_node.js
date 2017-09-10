@@ -10,6 +10,7 @@ class NumNode {
     this.left  = null;
     this.right = null;
     this.parent = null; // traverse up.
+    this.scoped = false;  // if has parenthesis
   }
 
   makeLeftNode(value){
@@ -61,17 +62,23 @@ class NumNode {
     this.value = this.solve();
     this.left = null;
     this.right = null;
+    this.scoped = false;
 
     return this;
   }
 
   toStr(node=this){
     if(node === null){ return null; }
-    if(node.isLeaf()){ return `(${node.value})`; };
 
-    let a = this.toStr(node.left);
-    let b = this.toStr(node.right);
-    return `(${a} ${node.value} ${b})`;
+    let str = node.value;
+    if(!node.isLeaf()){
+      let a = node.toStr(node.left);
+      let b = node.toStr(node.right);
+      str = `${a} ${str} ${b}`;
+    }
+
+    str = node.scoped ?  `[${str}]` : `(${str})`;
+    return str;
   }
 }
 
