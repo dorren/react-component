@@ -6,13 +6,16 @@ var styles = {
   RoundedCorner: {
     border: "2px solid #CCC",
     borderRadius: 5,
-    padding: 5,
-    width: 150,
-    display: "inline-block"
+    padding: 6,
+    width: 130,
+    display: "inline-block",
+  },
+  buttons:{
+    marginLeft: 80
   },
   addBtn: {
-    padding: 3,
-    marginLeft:50,
+    padding: "3px 10px",
+    marginLeft:10,
     fontSize:"100%",
     borderRadius: 5,
     background: "#EEE"
@@ -31,16 +34,16 @@ class Widget extends React.Component {
   // }
 
   addCount(n){
-    this.setState({count: this.state.count + 1});
+    this.setState({count: this.state.count + n});
   }
 
   getMessage(n) {
     if(n === 0){
-      return "No new message."
+      return "No message."
     }else if (n === 1){
-      return "1 new message."
+      return "1 message."
     }else{
-      return `${n} new messages.`
+      return `${n} messages.`
     }
   }
 
@@ -63,8 +66,8 @@ class Widget extends React.Component {
 
 
 class DemoRedDot extends React.Component {
-  updateWidget = ()=>{
-    this.widget.addCount();
+  updateWidget = (n=1)=>{
+    this.widget.addCount(n);
   }
 
   render(){
@@ -77,8 +80,12 @@ class DemoRedDot extends React.Component {
                   <div>
                     <Widget count={3} showCount={true}
                       ref={(elem) => { this.widget = elem; }} />
-                    <button style={styles.addBtn}
-                      onClick={ this.updateWidget }> add </button>
+                    <span style={styles.buttons}>
+                      <button style={styles.addBtn} data-
+                        onClick={ ()=> this.updateWidget(1) }> add 1 </button>
+                      <button style={styles.addBtn}
+                        onClick={ ()=> this.updateWidget(10) }> add 10 </button>
+                    </span>
                   </div>);
      let src3 = `
        /**

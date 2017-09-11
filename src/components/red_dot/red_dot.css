@@ -32,3 +32,6 @@
   text-align: center;
   font-size: 80%;
 }
+.RedDot > .Dot.WithCount.twoDigits {
+  font-size: 70%;
+}
