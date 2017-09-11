@@ -1,7 +1,7 @@
 
 .Demos .Menu {
   float: left;
-  width: 150px;
+  width: 130px;
 }
 
 .Demos .Menu > ul {
@@ -19,7 +19,7 @@
 }
 
 .Demos .DemoContent {
-  margin-left: 150px;
+  margin-left: 130px;
   overflow: hidden;
   padding: 20px;
 }
