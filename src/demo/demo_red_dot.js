@@ -7,8 +7,15 @@ var styles = {
     border: "2px solid #CCC",
     borderRadius: 5,
     padding: 5,
-    width: "auto",
+    width: 150,
     display: "inline-block"
+  },
+  addBtn: {
+    padding: 3,
+    marginLeft:50,
+    fontSize:"100%",
+    borderRadius: 5,
+    background: "#EEE"
   }
 }
 
@@ -17,6 +24,14 @@ class Widget extends React.Component {
     super(props);
     let n = props.count || 0;
     this.state = {count: n};
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({ count: nextProps.count || 0 });
+  // }
+
+  addCount(n){
+    this.setState({count: this.state.count + 1});
   }
 
   getMessage(n) {
@@ -46,48 +61,62 @@ class Widget extends React.Component {
   }
 }
 
-var DemoRedDot = function(props){
-  let demo = WithSrc.createDemo((<Widget />), `<Widget />`);
 
-  let demo2 = WithSrc.createDemo(
-               (<Widget count={2} />), `<Widget count={2} />`);
+class DemoRedDot extends React.Component {
+  updateWidget = ()=>{
+    this.widget.addCount();
+  }
 
-   let src3 = `
-     /**
-      *   <Widget count={3} showCount={true} />
-      */
-     class Widget extends React.Component {
-       /* ... brevify ... */
+  render(){
+    let demo = WithSrc.createDemo((<Widget />), `<Widget />`);
 
-       onRead = evt => {
-         this.setState({count: 0});
-       }
+    let demo2 = WithSrc.createDemo(
+                 (<Widget count={2} />), `<Widget count={2} />`);
 
-       render() {
-         let body = (<div style={ styles.RoundedCorner }
-                          onClick={ this.onRead }>
-                       { this.getMessage(this.state.count) }
-                     </div>);
-         return (
-           <RedDot count={ this.state.count } showCount={this.props.showCount}>
-             { body }
-           </RedDot>
-         );
-       }
-   `;
-   let demo3 = WithSrc.createDemo(
-                (<Widget count={3} showCount={true} />),
-                src3, "javascript", false);
-  return (
-    <div>
-      <div className="desc">
-         RedDot is used to decorate other React Components.
-         Try clicking on the components.
-      </div>
-      { demo  }
-      { demo2 }
-      { demo3 }
-    </div>);
+     let code3 = (
+                  <div>
+                    <Widget count={3} showCount={true}
+                      ref={(elem) => { this.widget = elem; }} />
+                    <button style={styles.addBtn}
+                      onClick={ this.updateWidget }> add </button>
+                  </div>);
+     let src3 = `
+       /**
+        *   <Widget count={3} showCount={true} />
+        */
+       class Widget extends React.Component {
+         /* ... brevify ... */
+
+         onRead = evt => {
+           this.setState({count: 0});
+         }
+
+         render() {
+           let body = (<div style={ styles.RoundedCorner }
+                            onClick={ this.onRead }>
+                         { this.getMessage(this.state.count) }
+                       </div>);
+           return (
+             <RedDot count={ this.state.count } showCount={this.props.showCount}>
+               { body }
+             </RedDot>
+           );
+         }
+     `;
+     let demo3 = WithSrc.createDemo(
+                  code3,
+                  src3, "javascript", false);
+    return (
+      <div>
+        <div className="desc">
+           RedDot is used to decorate other React Components.
+           Try clicking on the components.
+        </div>
+        { demo  }
+        { demo2 }
+        { demo3 }
+      </div>);
+  }
 }
 
 export default DemoRedDot;

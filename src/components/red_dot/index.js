@@ -3,7 +3,7 @@ import './red_dot.css';
 
 class RedDot extends React.Component {
   render() {
-    let dot = (<span/>);
+    let dot = (<span className="Dot gone"/>);
     if(this.props.count && this.props.count > 0){
       if(this.props.showCount){
         dot = (<span className="Dot WithCount">{ this.props.count }</span>);
