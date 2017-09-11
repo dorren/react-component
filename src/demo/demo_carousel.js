@@ -4,13 +4,13 @@ import Carousel from '../components/carousel/carousel';
 import Slide from '../components/carousel/slide';
 
 var DemoCarousel = function(props){
-  let code = (<Carousel width="800px" height="350px">
+  let code = (<Carousel className="carousel1">
                 <Slide><p>First Slide</p></Slide>
                 <Slide><p>Second Slide</p></Slide>
                 <Slide><p>Third Slide</p></Slide>
               </Carousel>);
 
-  let src = `<Carousel width="800px" height="350px">
+  let src = `<Carousel className="carousel1">
                 <Slide><p>First Slide</p></Slide>
                 <Slide><p>Second Slide</p></Slide>
                 <Slide><p>Third Slide</p></Slide>
@@ -18,14 +18,14 @@ var DemoCarousel = function(props){
   let demo = WithSrc.createDemo(code, src);
 
 
-  let code2 = (<Carousel width="800px" height="500px">
+  let code2 = (<Carousel className="carousel2">
                 <Slide><img src="images/canada.jpg" alt=""/></Slide>
                 <Slide><img src="images/landscape1.jpg" alt=""/></Slide>
                 <Slide><img src="images/logs.jpg" alt=""/></Slide>
                 <Slide><img src="images/sunrise.jpg" alt=""/></Slide>
               </Carousel>);
 
-  let src2 = `<Carousel width="800px" height="500px">
+  let src2 = `<Carousel className="carousel2">
                 <Slide><img src="images/canada.jpg" alt=""/></Slide>
                 <Slide><img src="images/landscape1.jpg" alt=""/></Slide>
                 <Slide><img src="images/logs.jpg" alt=""/></Slide>

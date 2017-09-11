@@ -3,6 +3,7 @@ import './demos.css';
 import logo from '../logo.svg';
 import '../App.css';
 
+import Hamburger from './hamburger';
 import DemoFadeIn from './demo_fade_in';
 import DemoSlideIn from './demo_slide_in';
 import DemoCarousel from './demo_carousel';
@@ -23,7 +24,7 @@ class Demos extends React.Component {
       'RedDot': (<DemoRedDot />),
       'Calculator': (<DemoCalculator />)
     };
-    this.state = {currentDemo: this.defaultDemo()};
+    this.state = {currentDemo: this.defaultDemo(), menuOpen: true};
   }
 
   defaultDemo() {
@@ -35,27 +36,36 @@ class Demos extends React.Component {
     this.setState({currentDemo: this.choices[key]});
   }
 
+  toggleMenu = (open)=> {
+    this.setState({menuOpen: open});
+  }
+
   render() {
     let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar",
                  "RedDot", "Calculator"];
     let links = names.map( (name,i) =>
-      (<li onClick={this.showDemo} key={i} data-name={name}>{name}</li>));
+      (<div className="link" onClick={this.showDemo} key={i} data-name={name}>{name}</div>));
+    let menuCss = this.state.menuOpen ? "open" : "close";
 
     return (
       <div className="Demos">
-        <div className="Menu">
+        <div className={`Menu ${menuCss}`}>
+          <Hamburger onClick={ this.toggleMenu }/>
           <div className="App">
             <div className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
             </div>
           </div>
-          <ul>
+          <div className="links">
             { links }
-          </ul>
-
+          </div>
         </div>
-        <div className="DemoContent">
-          { this.state.currentDemo }
+
+        <div id="main">
+
+          <div className="DemoContent">
+            { this.state.currentDemo }
+          </div>
         </div>
       </div>
     );

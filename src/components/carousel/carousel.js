@@ -6,8 +6,7 @@ class Carousel extends React.Component {
     super(props);
 
     this.state = {len: props.children.length,
-                  curr: 0,
-                  style: {width: props.width, height: props.height}};
+                  curr: 0};
     this.slides = [this.props.children[0]];  // slides to render
   }
 
@@ -40,14 +39,18 @@ class Carousel extends React.Component {
     let nextDisabled = this.state.curr === this.props.children.length - 1;
 
     return (
-      <div className="Carousel" style={ this.state.style }>
+      <div className={`Carousel ${this.props.className}`}>
         { this.slides }
-        <span className={`Arrow Left ${prevDisabled ? "disabled" : ""}`}
-          onClick={this.handlePrev}>{'\u27E8'}
-        </span>
-        <span className={`Arrow Right ${nextDisabled ? "disabled" : ""}`}
-          onClick={this.handleNext}>{'\u27E9'}
-        </span>
+        <div className="ArrowOuter Left">
+          <span className={`Arrow ${prevDisabled ? "disabled" : ""}`}
+            onClick={this.handlePrev}>{'\u27E8'}
+          </span>
+        </div>
+        <div className="ArrowOuter Right">
+          <span className={`Arrow ${nextDisabled ? "disabled" : ""}`}
+            onClick={this.handleNext}>{'\u27E9'}
+          </span>
+        </div>
       </div>
     );
   }

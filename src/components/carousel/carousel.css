@@ -22,24 +22,28 @@
   overflow: hidden;
 }
 
-.Carousel .Arrow {
-  font-weight: 900;
-  font-size: 60px;
-  vertical-align: middle;
+.Carousel .ArrowOuter {
   position: absolute;
-  text-shadow: 1px 1px 0px #FFF;
+  display: flex;
+  align-items: center;
 }
 
-.Carousel .Arrow.Left {
+.Carousel .ArrowOuter.Left {
   left: 5px;
 }
 
-.Carousel .Arrow.Right {
+.Carousel .ArrowOuter.Right {
   right: 5px;
 }
 
+.Carousel .ArrowOuter .Arrow {
+  font-weight: 900;
+  font-size: 60px;
+  text-shadow: 1px 1px 0px #FFF;
+}
 
-.Carousel .Arrow.disabled {
+
+.Carousel .ArrowOuter .Arrow.disabled {
   pointer-events: none;
   cursor: default;
   opacity: 0.6;
