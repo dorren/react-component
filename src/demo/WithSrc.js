@@ -1,29 +1,28 @@
 import React from 'react';
 import pretty from 'pretty';
-import hljs from 'highlightjs';
-import  'highlightjs/styles/vs.css';
+
+import 'prismjs';
+import 'prismjs/themes/prism.css';
+import {PrismCode} from "react-prism";
 
 /**
  * shows actual working component and its source.
  */
 class WithSrc extends React.Component {
-  componentDidMount() {
-    //hljs.initHighlightingOnLoad();
-    hljs.highlightBlock(this.srcDom);
-  }
-
   render() {
+    let lang = this.props.lang;
+    if(this.props.lang === "html")
+      lang = "markup";
+
     return (
       <div className="DemoBox">
         <div className="demo">
           { this.props.code }
         </div>
 
-        <pre ref={(dom) => { this.srcDom = dom; }}>
-          <code className={this.props.lang ? this.props.lang : "html"}>
-            { this.props.src }
-          </code>
-        </pre>
+        <PrismCode component="pre" className={`language-${lang}`}>
+          { this.props.src }
+        </PrismCode>
       </div>
     )
   }
