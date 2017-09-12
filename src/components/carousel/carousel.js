@@ -43,12 +43,12 @@ class Carousel extends React.Component {
         { this.slides }
         <div className="ArrowOuter Left">
           <span className={`Arrow ${prevDisabled ? "disabled" : ""}`}
-            onClick={this.handlePrev}>{'\u27E8'}
+            onClick={this.handlePrev}>{'\u2190'}
           </span>
         </div>
         <div className="ArrowOuter Right">
           <span className={`Arrow ${nextDisabled ? "disabled" : ""}`}
-            onClick={this.handleNext}>{'\u27E9'}
+            onClick={this.handleNext}>{'\u2192'}
           </span>
         </div>
       </div>
