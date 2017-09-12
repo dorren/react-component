@@ -11,6 +11,16 @@ import DemoProgressBar from './demo_progress_bar';
 import DemoRedDot from './demo_red_dot';
 import DemoCalculator from './demo_calculator';
 
+var Logo = (props)=> {
+  return (
+    <div className="App">
+      <div className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </div>
+    </div>
+  );
+}
+
 class Demos extends React.Component {
   constructor(props) {
     super(props);
@@ -51,18 +61,11 @@ class Demos extends React.Component {
       <div className="Demos">
         <div className={`Menu ${menuCss}`}>
           <Hamburger onClick={ this.toggleMenu }/>
-          <div className="App">
-            <div className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-            </div>
-          </div>
-          <div className="links">
-            { links }
-          </div>
+          <Logo />
+          <div className="links"> { links } </div>
         </div>
 
         <div id="main">
-
           <div className="DemoContent">
             { this.state.currentDemo }
           </div>
