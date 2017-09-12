@@ -2,7 +2,9 @@ import React from 'react';
 import pretty from 'pretty';
 
 import 'prismjs';
-import 'prismjs/themes/prism.css';
+//import 'prismjs/themes/prism.css';
+//import 'prism-themes/themes/prism-ghcolors.css';
+import './prism-dracula.css';
 import {PrismCode} from "react-prism";
 
 /**

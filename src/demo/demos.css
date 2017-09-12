@@ -13,10 +13,11 @@
 }
 
 .Demos .DemoBox {
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #DDD;
+  box-shadow: 3px 3px 10px #CCC;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 3em;
 }
 .Demos .demo {
   overflow: hidden;
@@ -25,8 +26,15 @@
 .Demos .desc {
   padding: 10px;
 }
-.Demos pre.hljs {
-  background: #EBF5FB;
+
+
+.Demos .Carousel .Slide > p{
+  font-size: 300%;
+  font-weight: 500;
+}
+
+.Demos pre[class*="language-"] {
+  margin: 10px;
 }
 
 @keyframes InFromLeft {
