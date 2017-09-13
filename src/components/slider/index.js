@@ -37,9 +37,7 @@ class Knob extends React.Component {
         defaultPosition={{x: 0, y: 0}}
         position={null}
         grid={[this.grid, this.grid]}>
-        <div className="Knob" >
-
-        </div>
+        <div className="Knob" />
       </Draggable>
     );
   }
@@ -71,7 +69,7 @@ class Slider extends React.Component {
 
   onDrag = (pos)=>{
     this.setState({index: pos});
-    
+
     if(this.props.onChange)
       this.props.onChange(pos);
   }
@@ -97,7 +95,7 @@ class Slider extends React.Component {
     });
 
     return (
-      <div className="Slider" style={{width: 500}}>
+      <div className="Slider" style={{width: 400}}>
         <div className="ui">
           <Ruler />
           <Knob
