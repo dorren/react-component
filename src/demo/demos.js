@@ -36,8 +36,7 @@ class Demos extends React.Component {
       'RedDot': (<DemoRedDot />),
       'Calculator': (<DemoCalculator />)
     };
-    //this.state = {currentDemo: this.defaultDemo(), menuOpen: true};
-    this.state = {currentDemo: <DemoSlider />, menuOpen: true};
+    this.state = {currentDemo: this.defaultDemo(), menuOpen: true};
   }
 
   defaultDemo() {
