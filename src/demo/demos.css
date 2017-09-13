@@ -84,15 +84,18 @@
 @media all and ( max-width: 767px ) {
   .carousel1 { width: 100%; height: 250px;  }
   .carousel2 { width: 100%; height: 350px;  }
+  .Slider { width: 100%; }
 }
 
 @media all and ( min-width: 768px ) {
   .carousel1 { width: 100%; height: 300px;  }
   .carousel2 { width: 100%; height: 350px;  }
+  .Slider { width: 100%; }
 }
 
 @media all and ( min-width: 1000px ) {
   #hamburger { }
   .carousel1 { width: 800px; height: 350px;  }
   .carousel2 { width: 800px; height: 500px;  }
+  .Slider { width: 60%; }
 }

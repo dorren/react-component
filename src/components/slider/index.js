@@ -95,7 +95,7 @@ class Slider extends React.Component {
     });
 
     return (
-      <div className="Slider" style={{width: 400}}>
+      <div className="Slider">
         <div className="ui">
           <Ruler />
           <Knob
