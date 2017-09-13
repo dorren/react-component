@@ -3,13 +3,15 @@ import WithSrc from './WithSrc';
 import Slider from '../components/slider';
 
 var handler = (index) =>{
-  console.log("slider position is now " + index);
+  let choices = ["plain", "mild", "spicy", "super"];
+  console.log(`You've selected ${choices[index]}.`);
 }
 
 var DemoSlider = function(props){
   let code = (<Slider choices={[1,2,3,4,5]}/>);
   let src  = "<Slider choices={[1,2,3,4,5]}/>";
   let demo = WithSrc.createDemo(code, src);
+
 
   let code2 = (<Slider
                  choices={["plain", "mild", "spicy", "super"]}
