@@ -3,7 +3,9 @@
 *:after {
   box-sizing: border-box;
 }
-
+.Demos {
+  overflow: hidden;
+}
 .Demos #main {
   overflow: hidden;
 }
@@ -62,8 +64,10 @@
     position: relative;
     transition: 0.3s;
     background: #EBF5FB;
-    height:100vh;
+    height:100%;
     z-index: 100;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
   }
 
   .Demos .Menu.open  {  width: 120px; }
