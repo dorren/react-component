@@ -10,6 +10,7 @@ import DemoCarousel from './demo_carousel';
 import DemoProgressBar from './demo_progress_bar';
 import DemoRedDot from './demo_red_dot';
 import DemoCalculator from './demo_calculator';
+import DemoSlider from './demo_slider';
 
 var Logo = (props)=> {
   return (
@@ -31,10 +32,12 @@ class Demos extends React.Component {
       'SlideIn': (<DemoSlideIn />),
       'Carousel':(<DemoCarousel />),
       'ProgressBar': (<DemoProgressBar />),
+      'Slider': (<DemoSlider />),
       'RedDot': (<DemoRedDot />),
       'Calculator': (<DemoCalculator />)
     };
-    this.state = {currentDemo: this.defaultDemo(), menuOpen: true};
+    //this.state = {currentDemo: this.defaultDemo(), menuOpen: true};
+    this.state = {currentDemo: <DemoSlider />, menuOpen: true};
   }
 
   defaultDemo() {
@@ -52,7 +55,7 @@ class Demos extends React.Component {
 
   render() {
     let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar",
-                 "RedDot", "Calculator"];
+                 "Slider", "RedDot", "Calculator"];
     let links = names.map( (name,i) =>
       (<div className="link" onClick={this.showDemo} key={i} data-name={name}>{name}</div>));
     let menuCss = this.state.menuOpen ? "open" : "close";
