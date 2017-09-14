@@ -10,15 +10,20 @@ var styles = {
     width: 130,
     display: "inline-block",
   },
-  buttons:{
-    marginLeft: 80
-  },
   addBtn: {
+    float: 'left',
     padding: "3px 10px",
-    marginLeft:10,
+    margin: '10px 20px 5px 0px',
     fontSize:"100%",
     borderRadius: 5,
     background: "#EEE"
+  },
+  floatWidget: {
+    float: "left",
+    marginRight: 50
+  },
+  clear: {
+    clear: "both"
   }
 }
 
@@ -78,14 +83,15 @@ class DemoRedDot extends React.Component {
 
      let code3 = (
                   <div>
-                    <Widget count={3} showCount={true}
-                      ref={(elem) => { this.widget = elem; }} />
-                    <span style={styles.buttons}>
-                      <button style={styles.addBtn} data-
-                        onClick={ ()=> this.updateWidget(1) }> add 1 </button>
-                      <button style={styles.addBtn}
-                        onClick={ ()=> this.updateWidget(10) }> add 10 </button>
-                    </span>
+                    <div style={styles.floatWidget}>
+                      <Widget count={3} showCount={true}
+                        ref={(elem) => { this.widget = elem; }} />
+                    </div>
+                    <button style={styles.addBtn} data-
+                      onClick={ ()=> this.updateWidget(1) }> add 1 </button>
+                    <button style={styles.addBtn}
+                      onClick={ ()=> this.updateWidget(20) }> add 20 </button>
+                    <div style={styles.clear}/>
                   </div>);
      let src3 = `
        /**
