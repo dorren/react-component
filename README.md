@@ -10,5 +10,5 @@ npm start
 
 ## build
 ```
-PUBLIC_URL='' npm run build
+PUBLIC_URL='https://dorren.github.io/react-components' npm run build
 ```
