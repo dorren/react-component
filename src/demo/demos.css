@@ -83,6 +83,10 @@
   .Demos .Menu .links > .link:hover {
     background-color: #85C1E9;
   }
+  .Demos .Menu .links > .link a{
+    text-decoration: none;
+    color: #333;
+  }
 }
 
 @media all and ( max-width: 767px ) {

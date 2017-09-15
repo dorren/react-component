@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
-import Demos from './demo/demos';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Menu from './menu';
+import Demo from './demo/demo';
+
+var Home = (props) => {
+  return (<p>React Components demos</p>);
+}
 
 class App extends Component {
   render() {
     return (
-      <Demos />
+      <Router>
+        <div className="Demos">
+          <Menu />
+
+          <div id="main">
+            <Route exact path="/"     component={Demo} />
+            <Route path="/demo/:name"  component={Demo} />
+          </div>
+        </div>
+      </Router>
     );
   }
 }
