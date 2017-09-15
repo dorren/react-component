@@ -75,18 +75,21 @@
 
   .Demos .Menu .links{ margin: 0; overflow: hidden;}
   .Demos .Menu .links > .link  {
-    padding: 7px 10px;
     transition: 0.3s;
     overflow: hidden;
   }
 
-  .Demos .Menu .links > .link:hover {
-    background-color: #85C1E9;
-  }
   .Demos .Menu .links > .link a{
+    padding: 7px 10px;
     text-decoration: none;
     color: #333;
+    display: block;
   }
+  .Demos .Menu .links > .link a:hover,
+  .Demos .Menu .links > .link a.active {
+    background-color: #85C1E9;
+  }
+
 }
 
 @media all and ( max-width: 767px ) {

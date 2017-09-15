@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Hamburger from './demo/hamburger';
 import './App.css';
@@ -30,12 +30,16 @@ class Menu extends React.Component {
                  "Slider", "RedDot", "Calculator"];
 
     let links = names.map( (name, i) => {
-      let path = name === 'Home' ? '/' : `/demo/${name}`;
-
-      return (<div className="link" key={i}>
-               <Link to={path}>{name}</Link>
-             </div>);
-     });
+      if(name === 'Home'){
+        return (<div className="link" key={i}>
+                 <Link to='/' onlyActiveOnIndex activeClassName="active">{name}</Link>
+               </div>);
+      }else{
+        return (<div className="link" key={i}>
+                 <NavLink to={`/demo/${name}`} activeClassName="active">{name}</NavLink>
+               </div>);
+      }
+    });
 
     let menuCss = this.state.menuOpen ? "open" : "close";
 
