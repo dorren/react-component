@@ -10,5 +10,5 @@ npm start
 
 ## build
 ```
-PUBLIC_URL='react-components' npm run build
+PUBLIC_URL='/react-components' npm run build && rm -fr docs && mv build docs
 ```
