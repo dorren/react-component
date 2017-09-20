@@ -32,7 +32,7 @@ class Menu extends React.Component {
     let links = names.map( (name, i) => {
       if(name === 'Home'){
         return (<div className="link" key={i}>
-                 <Link to='/' onlyActiveOnIndex activeClassName="active">{name}</Link>
+                 <Link to='/'>{name}</Link>
                </div>);
       }else{
         return (<div className="link" key={i}>

@@ -28,7 +28,12 @@ class Demo extends React.Component {
   }
 
   defaultDemo() {
-    return (<p>React Components demos</p>);
+    return (
+      <p>React Components demos.
+         <a href="https://github.com/dorren/react-components" target="_blank">
+         github repo.
+         </a>
+      </p>);
   }
   componentDidMount(){
     this.updateDemo(this.props);
