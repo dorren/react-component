@@ -29,9 +29,9 @@ class Demo extends React.Component {
 
   defaultDemo() {
     return (
-      <p>React Components demos.
+      <p>React Components demos. Source is at&nbsp;
          <a href="https://github.com/dorren/react-components" target="_blank">
-         github repo.
+           github.
          </a>
       </p>);
   }
