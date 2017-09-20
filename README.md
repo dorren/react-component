@@ -1,5 +1,5 @@
 ## introduction
-A collection of react components I've created while learning react, hehe.
+A small collection of react components.
 
 see [Live demo here](https://dorren.github.io/react-components/)
 ## run
