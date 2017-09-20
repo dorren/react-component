@@ -19,10 +19,10 @@ var DemoCarousel = function(props){
 
 
   let code2 = (<Carousel className="carousel2">
-                <Slide><img src="/images/canada.jpg" alt=""/></Slide>
-                <Slide><img src="/images/landscape1.jpg" alt=""/></Slide>
-                <Slide><img src="/images/logs.jpg" alt=""/></Slide>
-                <Slide><img src="/images/sunrise.jpg" alt=""/></Slide>
+                <Slide><img src={`${process.env.PUBLIC_URL}/images/canada.jpg`} alt=""/></Slide>
+                <Slide><img src={`${process.env.PUBLIC_URL}/images/landscape1.jpg`} alt=""/></Slide>
+                <Slide><img src={`${process.env.PUBLIC_URL}/images/logs.jpg`} alt=""/></Slide>
+                <Slide><img src={`${process.env.PUBLIC_URL}/images/sunrise.jpg`} alt=""/></Slide>
               </Carousel>);
 
   let src2 = `<Carousel className="carousel2">
