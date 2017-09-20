@@ -17,7 +17,6 @@ var DemoCarousel = function(props){
               </Carousel>`;
   let demo = WithSrc.createDemo(code, src);
 
-
   let code2 = (<Carousel className="carousel2">
                 <Slide><img src={`${process.env.PUBLIC_URL}/images/canada.jpg`} alt=""/></Slide>
                 <Slide><img src={`${process.env.PUBLIC_URL}/images/landscape1.jpg`} alt=""/></Slide>
