@@ -5,13 +5,13 @@ import Octopus from '../components/octopus';
 
 var DemoOctopus = function(props){
   let code = (<Octopus
-                width={300}
+                width={200}
                 height={240}
                 weights={[0.6, 0.2, 0.1, 0.1]}
               />);
 
   let src = `<Octopus
-                width={300}
+                width={200}
                 height={240}
                 weights={[0.6, 0.2, 0.1, 0.1]}
               />`;
@@ -22,7 +22,7 @@ var DemoOctopus = function(props){
     <div className="Revenue">
       <div className="Left">Revenues</div>
       <Octopus
-        width={300} height={240}
+        width={200} height={240}
         weights={[0.6, 0.2, 0.1, 0.1]}
       />
       <div className="Lines">
@@ -48,7 +48,7 @@ var DemoOctopus = function(props){
   let src2 = `<div className="Revenue">
     <div className="Left">Revenues</div>
     <Octopus
-      width={300} height={240}
+      width={200} height={240}
       weights={[0.6, 0.2, 0.1, 0.1]}
     />
     <div className="Lines">
