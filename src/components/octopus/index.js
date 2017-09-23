@@ -24,18 +24,20 @@ class Octopus extends React.Component {
    * @return one way bezier curve points in 2D array.
    */
   buildCurve(width, height, t, dx, dy, direction){
+    // move top path slightly left, bottom path slightly right,
+    // to ensure curve even width. Reverse for downward curve.
+    let dt = (direction === "NE" || direction === "NW") ? -t/5 : t/5;
+
     if(direction === "NE"){
-      let dt = -t/5; // move top to left slightly, to ensure curve even width.
       return [
          [dt + dx,             dy + height],
          [dt + dx + width/5,   dy + height],
          [dt + dx + width/3,   dy + height],
          [dt + dx + width/2,   dy + height/2],   // inflection point
          [dt + dx + width/5*4, dy],
-         [dx + width,     dy]
+         [dx + width,          dy]
         ];
     }else if(direction === "SW"){
-      let dt = t/5;  // move bottom to right slightly
       return [
          [dt + dx + width,     dy],
          [dt + dx + width/5*4, dy],
@@ -45,9 +47,8 @@ class Octopus extends React.Component {
          [dx,                  dy + height]
         ];
     }else if(direction === "SE"){
-      let dt = t/5;
       return [
-         [dx,             dy],
+         [dx,                  dy],
          [dt + dx + width/5,   dy],
          [dt + dx + width/3,   dy],
          [dt + dx + width/2,   dy + height/2],   // inflection point
@@ -55,7 +56,6 @@ class Octopus extends React.Component {
          [dt + dx + width,     dy + height]
         ];
     }else if(direction === "NW"){
-      let dt = -t/5;
       return [
          [dt + dx + width,     dy + height],
          [dt + dx + width/5*4, dy + height],
