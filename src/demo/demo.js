@@ -9,6 +9,7 @@ import DemoProgressBar from './demo_progress_bar';
 import DemoRedDot from './demo_red_dot';
 import DemoCalculator from './demo_calculator';
 import DemoSlider from './demo_slider';
+import DemoOctopus from './demo_octopus';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class Demo extends React.Component {
       'ProgressBar': DemoProgressBar,
       'Slider':      DemoSlider,
       'RedDot':      DemoRedDot,
-      'Calculator':  DemoCalculator
+      'Calculator':  DemoCalculator,
+      'Octopus':     DemoOctopus
     };
     this.state = {currentDemo: this.defaultDemo()};
   }

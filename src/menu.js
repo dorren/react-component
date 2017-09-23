@@ -27,7 +27,7 @@ class Menu extends React.Component {
 
   render() {
     let names = ["Home", "FadeIn", "SlideIn", "Carousel", "ProgressBar",
-                 "Slider", "RedDot", "Calculator"];
+                 "Slider", "RedDot", "Calculator", "Octopus"];
 
     let links = names.map( (name, i) => {
       if(name === 'Home'){

@@ -39,6 +39,36 @@
   margin: 10px;
 }
 
+.Demos .Revenue {
+  display: flex;
+  align-items: stretch;
+}
+.Demos .Revenue .Left{
+  display: flex;
+  padding: 10px;
+  font-size: 150%;
+}
+.Demos .Revenue .Lines{
+  display: flex;
+}
+.Demos .Revenue .Left{
+  align-items: center;
+}
+.Demos .Revenue .Lines{
+  flex-direction: column;
+  justify-content: space-around;
+}
+.Demos .Revenue .Lines .Line{
+  padding: 5px 10px;
+  font-size: 130%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Demos .Revenue .Lines .Line .Desc{
+  margin-right: 10px;
+}
+
 @keyframes InFromLeft {
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(0);     }
