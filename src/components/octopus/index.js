@@ -57,12 +57,12 @@ class Octopus extends React.Component {
         ];
     }else if(direction === "NW"){
       return [
-         [dt + dx + width,     dy + height],
+         [dx + width,          dy + height],
          [dt + dx + width/5*4, dy + height],
          [dt + dx + width/3*2, dy + height],
          [dt + dx + width/2,   dy + height/2],   // inflection point
          [dt + dx + width/5,   dy],
-         [dx,                  dy]
+         [dt + dx,                  dy]
         ];
     }
   }
