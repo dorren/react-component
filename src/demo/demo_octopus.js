@@ -56,18 +56,7 @@ var DemoOctopus = function(props){
         <div className="Desc">General Merchandise</div>
         <div className="Value">$6B</div>
       </div>
-      <div className="Line">
-        <div className="Desc">Books & Media</div>
-        <div className="Value">$2B</div>
-      </div>
-      <div className="Line">
-        <div className="Desc">Cloud Service</div>
-        <div className="Value">$1B</div>
-      </div>
-      <div className="Line">
-        <div className="Desc">Other Revenues</div>
-        <div className="Value">$1B</div>
-      </div>
+      ...
     </div>
   </div>`;
   let demo2 = WithSrc.createDemo(code2, src2);

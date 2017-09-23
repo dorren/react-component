@@ -17,61 +17,54 @@ class Octopus extends React.Component {
    * 6th point is skipped due to symmetry.
    * @param width
    * @param height
+   * @param t, thickness
    * @param dx, x offset
    * @param dy, y offset
    * @param direction, "NE" or "SE"
    * @return one way bezier curve points in 2D array.
    */
-  buildCurve(width, height, dx, dy, direction){
+  buildCurve(width, height, t, dx, dy, direction){
     if(direction === "NE"){
+      let dt = -t/5; // move top to left slightly, to ensure curve even width.
       return [
-         [dx,             dy + height],
-         [dx + width/5,   dy + height],
-         [dx + width/3,   dy + height],
-         [dx + width/2,   dy + height/2],   // inflection point
-         [dx + width/5*4, dy],
+         [dt + dx,             dy + height],
+         [dt + dx + width/5,   dy + height],
+         [dt + dx + width/3,   dy + height],
+         [dt + dx + width/2,   dy + height/2],   // inflection point
+         [dt + dx + width/5*4, dy],
          [dx + width,     dy]
         ];
     }else if(direction === "SW"){
+      let dt = t/5;  // move bottom to right slightly
       return [
-         [dx + width,     dy],
-         [dx + width/5*4, dy],
-         [dx + width/3*2, dy],
-         [dx + width/2,   dy + height/2],   // inflection point
-         [dx + width/5,   dy + height ],
-         [dx,             dy + height]
+         [dt + dx + width,     dy],
+         [dt + dx + width/5*4, dy],
+         [dt + dx + width/3*2, dy],
+         [dt + dx + width/2,   dy + height/2],   // inflection point
+         [dt + dx + width/5,   dy + height ],
+         [dx,                  dy + height]
         ];
     }else if(direction === "SE"){
+      let dt = t/5;
       return [
          [dx,             dy],
-         [dx + width/5,   dy],
-         [dx + width/3,   dy],
-         [dx + width/2,   dy + height/2],   // inflection point
-         [dx + width/5*4, dy + height],
-         [dx + width,     dy + height]
+         [dt + dx + width/5,   dy],
+         [dt + dx + width/3,   dy],
+         [dt + dx + width/2,   dy + height/2],   // inflection point
+         [dt + dx + width/5*4, dy + height],
+         [dt + dx + width,     dy + height]
         ];
     }else if(direction === "NW"){
+      let dt = -t/5;
       return [
-         [dx + width,     dy + height],
-         [dx + width/5*4, dy + height],
-         [dx + width/3*2, dy + height],
-         [dx + width/2,   dy + height/2],   // inflection point
-         [dx + width/5,   dy],
-         [dx,             dy]
+         [dt + dx + width,     dy + height],
+         [dt + dx + width/5*4, dy + height],
+         [dt + dx + width/3*2, dy + height],
+         [dt + dx + width/2,   dy + height/2],   // inflection point
+         [dt + dx + width/5,   dy],
+         [dx,                  dy]
         ];
     }
-  }
-
-  buildDots(curve){
-    let dots = [
-        <circle key={0} cx={curve[0][0]} cy={curve[0][1]} r="2" fill="red"/>,
-        <circle key={1} cx={curve[1][0]} cy={curve[1][1]} r="2" fill="red"/>,
-        <circle key={2} cx={curve[2][0]} cy={curve[2][1]} r="2" fill="red"/>,
-        <circle key={3} cx={curve[3][0]} cy={curve[3][1]} r="2" fill="red"/>,
-        <circle key={4} cx={curve[4][0]} cy={curve[4][1]} r="2" fill="red"/>,
-        <circle key={5} cx={curve[5][0]} cy={curve[5][1]} r="2" fill="red"/>
-    ];
-    return dots;
   }
 
   curveToPath(curve){
@@ -85,10 +78,10 @@ class Octopus extends React.Component {
 
   // build one enclosed curve block.
   buildCurvePath(width, height, thickness, dx, dy, direction){
-    let curve = this.buildCurve(width, height, dx, dy, direction);
+    let curve = this.buildCurve(width, height, thickness, dx, dy, direction);
     let path = this.curveToPath(curve);
 
-    let curve2 = this.buildCurve(width, height, dx, dy+thickness, this.nextDirection[direction]);
+    let curve2 = this.buildCurve(width, height, thickness, dx, dy+thickness, this.nextDirection[direction]);
     path += ` L ${curve2[0][0]} ${curve2[0][1]} `;
 
     path += this.curveToPath(curve2);
