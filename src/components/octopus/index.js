@@ -97,20 +97,21 @@ class Octopus extends React.Component {
     return path;
   }
 
-  buildSvg(){
+  buildPaths(){
     let width = this.props.width;
     let height = this.props.height;
     let total_thickness = height / 4;  // all curve thickness total to 1/4 of height.
+
     let row_count = this.props.weights.length;
     let line_height = height / row_count;
     let thicknesses = this.props.weights.map( x => x * total_thickness);
-    let dy = (height - total_thickness)/2; // left side y offset
+    let dy = (height - total_thickness)/2;                 // left side y offset
 
     let paths = thicknesses.map((x, i) => {
       let dy1 = line_height * i + (line_height - x) / 2;  // right side y offset
       let min_dy = Math.min(dy, dy1);
       let curve_height = Math.abs(dy - dy1) + x;
-      let dir = i < row_count / 2 ? "NE" : "SE";
+      let dir = i < row_count / 2 ? "NE" : "SE";  // bottom half paths curve downward
 
       //console.log("i", i, 'w', width, 'h', curve_height, 't', x, 'dx', 0, 'dy', min_dy, dir);
       let path = this.buildCurvePath(width, curve_height-x, x, 0, min_dy, dir);
@@ -118,27 +119,24 @@ class Octopus extends React.Component {
       return path;
     });
 
-    let path_elems = paths.map((path, i) => {
-      return <path key={i} d={path}  stroke="transparent"
-                   fill={ this.props.color || this.default.color }/>
-    });
-
-    let svg = (
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width= { this.props.width  }
-           height={ this.props.height }>
-        { path_elems }
-      </svg>
-    );
-    return svg;
+    return paths;
   }
 
   render() {
-    let svg = this.buildSvg();
+    let paths = this.buildPaths();
+    let path_elems = paths.map((path, i) => {
+      return <path key={i} d={path}
+                   stroke="transparent"
+                   fill={ this.props.color || this.default.color }/>
+    });
 
     return (
       <div className="Octopus">
-        { svg }
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width= { this.props.width  }
+             height={ this.props.height }>
+          { path_elems }
+        </svg>
       </div>
     );
   }
